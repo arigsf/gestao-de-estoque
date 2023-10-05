@@ -17,6 +17,17 @@ export const insert = async (filePath: string, data: Data[]): Promise<void> => {
   return csvWriter.writeRecords(data);
 };
 
+
+export const getObject = async (filePath: string, nome: string): Promise<Data | undefined> => {
+  try {
+    const dados = await list(filePath);
+    const objetoEncontrado = dados.find((objeto) => objeto.nome === nome);
+    return objetoEncontrado;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const list = async (filePath: string): Promise<Data[]> => {
   return new Promise((resolve, reject) => {
     const results: Data[] = [];
