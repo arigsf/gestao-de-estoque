@@ -16,3 +16,14 @@ export const insert = async (filePath: string, data: Data[]): Promise<void> => {
 
   return csvWriter.writeRecords(data);
 };
+
+export const list = async (filePath: string): Promise<Data[]> => {
+  return new Promise((resolve, reject) => {
+    const results: Data[] = [];
+    fs.createReadStream(filePath)
+      .pipe(csv())
+      .on('data', (data: Data) => results.push(data))
+      .on('end', () => resolve(results))
+      .on('error', (error) => reject(error));
+  });
+};
