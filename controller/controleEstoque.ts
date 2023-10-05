@@ -78,14 +78,16 @@ export const mediaValorInventario = async (filePath) => {
     try {
         const dados = await list(filePath);
         var soma = 0;
+        var q = 0;
         if (dados.length == 0) {
             return 0;
         }
         else {
             dados.forEach((dado, index) => {
                 soma += dado.valor*dado.quantidade;
+                q += dado.quantidade;
             });
-            return soma/dados.length;
+            return soma/q;
         }
     } catch (error) {
         throw error;
@@ -96,14 +98,16 @@ export const mediaPesoInventario = async (filePath) => {
     try {
         const dados = await list(filePath);
         var soma = 0;
+        var q = 0;
         if (dados.length == 0) {
             return 0;
         }
         else {
             dados.forEach((dado, index) => {
                 soma += dado.peso*dado.quantidade;
+                q += dado.quantidade;
             });
-            return soma/dados.length;
+            return soma/q;
         }
     } catch (error) {
         throw error;

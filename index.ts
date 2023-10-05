@@ -1,5 +1,6 @@
 import * as readline from 'readline';
 import { listarTodos, buscarPorNome, removerPorNome, inserirEstoque, totalValorInventario, totalPesoInventario, mediaValorInventario, mediaPesoInventario, quantidadeItensInventario, quantidadeProdutosInventario } from './controller/controleEstoque';
+import Data from './model/readCSV';
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -9,6 +10,8 @@ const rl = readline.createInterface({
 const filePath = './db/gestao-de-estoque.csv';
 
 const exibirMenu = () => {
+    console.clear();
+    console.log('### GESTÃO DO INVENTÁRIO ###');
     console.log('[1] Adicionar item ao inventário');
     console.log('[2] Remover item do inventário');
     console.log('[3] Listar itens do inventário');
@@ -23,18 +26,20 @@ const exibirMenu = () => {
 const processarEscolha = async (opcao) => {
     switch (opcao) {
         case '1':
-            rl.question('Digite o nome do novo estoque: ', async (nome) => {
-                rl.question('Digite o peso, em kg, do novo estoque: ', async (peso) => {
-                    rl.question('Digite o valor, em R$, do novo estoque: ', async (valor) => {
-                        rl.question('Digite a quantidade do novo estoque: ', async (quantidade) => {
+            rl.question('Digite o nome do item: ', async (nome) => {
+                rl.question('Digite o peso, em kg, do item: ', async (peso) => {
+                    rl.question('Digite o valor, em R$, do item: ', async (valor) => {
+                        rl.question('Digite a quantidade do item: ', async (quantidade) => {
                             if (nome != null && peso != null && valor != null && quantidade != null) {
+                                console.log(nome);
                                 try {
-                                    await inserirEstoque(filePath, {
-                                        nome,
-                                        peso: parseFloat(peso),
+                                    const item: Data = {
+                                        nome: nome,
+                                        peso: parseInt(peso),
                                         valor: parseFloat(valor),
                                         quantidade: parseInt(quantidade)
-                                    });
+                                    };
+                                    await inserirEstoque(filePath, item);
                                     console.log(`O novo item ${nome} foi inserido com sucesso!`);
                                 } catch (error) {
                                     console.error(error);
@@ -77,6 +82,9 @@ const processarEscolha = async (opcao) => {
                 } catch (error) {
                     console.error(error);
                 }
+            });
+            pausaParaVisualizar(() => {
+                realizarProximaAcao();
             });
             break;
         case '3':
@@ -174,7 +182,9 @@ const processarEscolha = async (opcao) => {
             break;
         default:
             console.log('Opção inválida.');
-            realizarProximaAcao();
+            pausaParaVisualizar(() => {
+                realizarProximaAcao();
+            });
     }
 };
 
@@ -188,7 +198,6 @@ const realizarProximaAcao = () => {
 function pausaParaVisualizar(callback) {
     rl.question('\nPressione Enter para continuar...', () => {
         if (callback) {
-            console.clear();
             callback();
         }
     });
