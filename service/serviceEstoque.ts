@@ -20,8 +20,7 @@ export const insert = async (filePath: string, data: Data[]): Promise<void> => {
 export const getObject = async (filePath: string, nome: string): Promise<Data | undefined> => {
   try {
     const dados = await list(filePath);
-    const objetoEncontrado = dados.find((objeto) => objeto.nome === nome);
-    return objetoEncontrado;
+    return dados.find((objeto) => objeto.nome === nome);
   } catch (error) {
     throw error;
   }
@@ -40,9 +39,6 @@ export const remove = async (filePath: string, nome: string): Promise<void> => {
         fileStream.write(`${objeto.nome},${objeto.peso},${objeto.valor},${objeto.quantidade}\n`);
       });
       fileStream.end();
-      console.log(`Objeto com o nome "${nome}" removido com sucesso.`);
-    } else {
-      console.log(`Nenhum objeto encontrado com o nome "${nome}".`);
     }
   } catch (error) {
     throw error;
