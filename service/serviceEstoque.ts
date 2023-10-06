@@ -3,18 +3,19 @@ import * as csv from 'csv-parser';
 import { createObjectCsvWriter as createCsvWriter } from 'csv-writer';
 import Data from '../model/readCSV';
 
-export const insert = async (filePath: string, data: Data[]): Promise<void> => {
+export const insert = async (filePath: string, data: Data): Promise<void> => {
   const csvWriter = createCsvWriter({
     path: filePath,
     header: [
-      { id: 'nome', title: 'NOME' },
-      { id: 'peso', title: 'PESO' },
-      { id: 'valor', title: 'VALOR' },
-      { id: 'quantidade', title: 'QUANTIDADE' },
+      { id: 'nome', title: 'nome' },
+      { id: 'peso', title: 'peso' },
+      { id: 'valor', title: 'valor' },
+      { id: 'quantidade', title: 'quantidade' },
     ],
+    append: true,
   });
 
-  return csvWriter.writeRecords(data);
+  return csvWriter.writeRecords([data]);
 };
 
 export const getObject = async (filePath: string, nome: string): Promise<Data | undefined> => {
