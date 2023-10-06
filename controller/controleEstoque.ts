@@ -47,7 +47,7 @@ export const totalValorInventario = async (filePath) => {
         }
         else {
             dados.forEach((dado, index) => {
-                soma += dado.valor*dado.quantidade;
+                soma += Number(dado.valor*dado.quantidade);
             });
             return soma;
         }
@@ -65,7 +65,7 @@ export const totalPesoInventario = async (filePath) => {
         }
         else {
             dados.forEach((dado, index) => {
-                soma += dado.peso*dado.quantidade;
+                soma += Number(dado.peso*dado.quantidade);
             });
             return soma;
         }
@@ -84,8 +84,10 @@ export const mediaValorInventario = async (filePath) => {
         }
         else {
             dados.forEach((dado, index) => {
-                soma += dado.valor*dado.quantidade;
-                q += dado.quantidade;
+                const valor = Number(dado.valor);
+                const quantidade = Number(dado.quantidade);
+                soma += valor * quantidade;
+                q += quantidade;
             });
             return soma/q;
         }
@@ -103,9 +105,11 @@ export const mediaPesoInventario = async (filePath) => {
             return 0;
         }
         else {
-            dados.forEach((dado, index) => {
-                soma += dado.peso*dado.quantidade;
-                q += dado.quantidade;
+            dados.forEach((dado, index) => {                
+                const peso = Number(dado.peso);
+                const quantidade = Number(dado.quantidade);
+                soma += peso*quantidade;
+                q += quantidade;
             });
             return soma/q;
         }
@@ -123,7 +127,7 @@ export const quantidadeItensInventario = async (filePath) => {
         }
         else {
             dados.forEach((dado, index) => {
-                soma += dado.quantidade;
+                soma += Number(dado.quantidade);
             });
             return soma;
         }
