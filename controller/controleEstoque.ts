@@ -10,7 +10,7 @@ export const inserirEstoque = async (filePath, estoque) => {
         }
     }
     else {
-        throw "Esse item já existe no inventário";
+        throw "Esse item já existe no inventário.";
     }
 };
 

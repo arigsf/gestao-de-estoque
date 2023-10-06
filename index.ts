@@ -20,7 +20,7 @@ const exibirMenu = () => {
     console.log('[6] Média de valor dos itens');
     console.log('[7] Média de peso dos itens');
     console.log('[8] Quantidade total de itens no inventário');
-    console.log('[8] Quantidade total de produtos no inventário');
+    console.log('[9] Quantidade total de produtos no inventário');
 };
 
 const processarEscolha = async (opcao) => {
@@ -44,13 +44,13 @@ const processarEscolha = async (opcao) => {
                                 } catch (error) {
                                     console.error(error);
                                 }
+                                pausaParaVisualizar(() => {
+                                    realizarProximaAcao();
+                                });
                             }
                         });
                     });
                 });
-            });
-            pausaParaVisualizar(() => {
-                realizarProximaAcao();
             });
             break;
         case '2':
@@ -68,30 +68,42 @@ const processarEscolha = async (opcao) => {
                                 try {
                                     await removerPorNome(filePath, nome);
                                     console.log(`O item ${nome} foi removido com sucesso!`);
+                                    pausaParaVisualizar(() => {
+                                        realizarProximaAcao();
+                                    });
                                 } catch (error) {
                                     console.error(error);
+                                    pausaParaVisualizar(() => {
+                                        realizarProximaAcao();
+                                    });
                                 }
                             }
                             else {
                                 console.log("Solicitação de remoção cancelada.");
+                                pausaParaVisualizar(() => {
+                                    realizarProximaAcao();
+                                });
                             }
                         });
                     } else {
                         console.log(`Nenhum item encontrado com o nome ${nome}.`);
+                        pausaParaVisualizar(() => {
+                            realizarProximaAcao();
+                        });
                     }
                 } catch (error) {
                     console.error(error);
+                    pausaParaVisualizar(() => {
+                        realizarProximaAcao();
+                    });
                 }
-            });
-            pausaParaVisualizar(() => {
-                realizarProximaAcao();
             });
             break;
         case '3':
             try {
                 const dados = await listarTodos(filePath);
                 if (dados.length == 0) {
-                    console.log("Nenhum item foi encontrado")
+                    console.log("Nenhum item foi encontrado.")
                 }
                 else {
                     console.log('Estoques encontrados:');
@@ -103,78 +115,99 @@ const processarEscolha = async (opcao) => {
                         console.log('Quantidade:', dado.quantidade);
                     });
                 }
+                pausaParaVisualizar(() => {
+                    realizarProximaAcao();
+                });
             } catch (error) {
                 console.error(error);
+                pausaParaVisualizar(() => {
+                    realizarProximaAcao();
+                });
             }
-            pausaParaVisualizar(() => {
-                realizarProximaAcao();
-            });
             break;
         case '4':
             try {
                 const valorTotal = await totalValorInventario(filePath);
-                console.log(`O valor total do seu inventário é R$${valorTotal}.`)
+                console.log(`O valor total do seu inventário é R$${valorTotal.toFixed(2)}.`)
+                pausaParaVisualizar(() => {
+                    realizarProximaAcao();
+                });
             } catch (error) {
                 console.error(error);
+                pausaParaVisualizar(() => {
+                    realizarProximaAcao();
+                });
             }
-            pausaParaVisualizar(() => {
-                realizarProximaAcao();
-            });
             break;
         case '5':
             try {
                 const pesoTotal = await totalPesoInventario(filePath);
                 console.log(`O peso total do seu inventário é ${pesoTotal}kg.`)
+                pausaParaVisualizar(() => {
+                    realizarProximaAcao();
+                });
             } catch (error) {
                 console.error(error);
+                pausaParaVisualizar(() => {
+                    realizarProximaAcao();
+                });
             }
-            pausaParaVisualizar(() => {
-                realizarProximaAcao();
-            });
             break;
         case '6':
             try {
                 const mediaValor = await mediaValorInventario(filePath);
-                console.log(`A média de valor do seu inventário é R$${mediaValor}.`)
+                console.log(`A média de valor do seu inventário é R$${mediaValor.toFixed(2)}.`);
+                pausaParaVisualizar(() => {
+                    realizarProximaAcao();
+                });
             } catch (error) {
                 console.error(error);
+                pausaParaVisualizar(() => {
+                    realizarProximaAcao();
+                });
             }
-            pausaParaVisualizar(() => {
-                realizarProximaAcao();
-            });
             break;
         case '7':
             try {
                 const mediaPeso = await mediaPesoInventario(filePath);
-                console.log(`A média de peso do seu inventário é ${mediaPeso}kg.`)
+                console.log(`A média de peso do seu inventário é ${mediaPeso}kg.`);
+                pausaParaVisualizar(() => {
+                    realizarProximaAcao();
+                });
             } catch (error) {
                 console.error(error);
+                pausaParaVisualizar(() => {
+                    realizarProximaAcao();
+                });
             }
-            pausaParaVisualizar(() => {
-                realizarProximaAcao();
-            });
             break;
         case '8':
             try {
                 const qTotal = await quantidadeItensInventario(filePath);
-                console.log(`Há no seu inventário ${qTotal} itens.`)
+                console.log(`Há no seu inventário ${qTotal} itens.`);
+                pausaParaVisualizar(() => {
+                    realizarProximaAcao();
+                });
             } catch (error) {
                 console.error(error);
+                pausaParaVisualizar(() => {
+                    realizarProximaAcao();
+                });
             }
-            pausaParaVisualizar(() => {
-                realizarProximaAcao();
-            });
             break;
         case '9':
             try {
                 const qTotal = await quantidadeProdutosInventario(filePath);
-                console.log(`Há no seu inventário ${qTotal} produtos.`)
+                console.log(`Há no seu inventário ${qTotal} produtos.`);
+                pausaParaVisualizar(() => {
+                    realizarProximaAcao();
+                });
             } catch (error) {
                 console.error(error);
+                pausaParaVisualizar(() => {
+                    realizarProximaAcao();
+                });
             }
-            pausaParaVisualizar(() => {
-                realizarProximaAcao();
-            });
             break;
         case '0':
             console.log('Saindo...');

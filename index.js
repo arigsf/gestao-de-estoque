@@ -87,7 +87,7 @@ var processarEscolha = function (opcao) { return __awaiter(void 0, void 0, void 
                                             return __generator(this, function (_a) {
                                                 switch (_a.label) {
                                                     case 0:
-                                                        if (!(nome != null && peso != null && valor != null && quantidade != null)) return [3 /*break*/, 4];
+                                                        if (!(nome != null && peso != null && valor != null && quantidade != null)) return [3 /*break*/, 5];
                                                         console.log(nome);
                                                         _a.label = 1;
                                                     case 1:
@@ -107,7 +107,12 @@ var processarEscolha = function (opcao) { return __awaiter(void 0, void 0, void 
                                                         error_8 = _a.sent();
                                                         console.error(error_8);
                                                         return [3 /*break*/, 4];
-                                                    case 4: return [2 /*return*/];
+                                                    case 4:
+                                                        pausaParaVisualizar(function () {
+                                                            realizarProximaAcao();
+                                                        });
+                                                        _a.label = 5;
+                                                    case 5: return [2 /*return*/];
                                                 }
                                             });
                                         }); });
@@ -120,9 +125,6 @@ var processarEscolha = function (opcao) { return __awaiter(void 0, void 0, void 
                         return [2 /*return*/];
                     });
                 }); });
-                pausaParaVisualizar(function () {
-                    realizarProximaAcao();
-                });
                 return [3 /*break*/, 33];
             case 2:
                 rl.question('Digite o nome do item a ser removido: ', function (nome) { return __awaiter(void 0, void 0, void 0, function () {
@@ -153,14 +155,23 @@ var processarEscolha = function (opcao) { return __awaiter(void 0, void 0, void 
                                                 case 2:
                                                     _a.sent();
                                                     console.log("O item ".concat(nome, " foi removido com sucesso!"));
+                                                    pausaParaVisualizar(function () {
+                                                        realizarProximaAcao();
+                                                    });
                                                     return [3 /*break*/, 4];
                                                 case 3:
                                                     error_10 = _a.sent();
                                                     console.error(error_10);
+                                                    pausaParaVisualizar(function () {
+                                                        realizarProximaAcao();
+                                                    });
                                                     return [3 /*break*/, 4];
                                                 case 4: return [3 /*break*/, 6];
                                                 case 5:
                                                     console.log("Solicitação de remoção cancelada.");
+                                                    pausaParaVisualizar(function () {
+                                                        realizarProximaAcao();
+                                                    });
                                                     _a.label = 6;
                                                 case 6: return [2 /*return*/];
                                             }
@@ -169,19 +180,22 @@ var processarEscolha = function (opcao) { return __awaiter(void 0, void 0, void 
                                 }
                                 else {
                                     console.log("Nenhum item encontrado com o nome ".concat(nome, "."));
+                                    pausaParaVisualizar(function () {
+                                        realizarProximaAcao();
+                                    });
                                 }
                                 return [3 /*break*/, 3];
                             case 2:
                                 error_9 = _a.sent();
                                 console.error(error_9);
+                                pausaParaVisualizar(function () {
+                                    realizarProximaAcao();
+                                });
                                 return [3 /*break*/, 3];
                             case 3: return [2 /*return*/];
                         }
                     });
                 }); });
-                pausaParaVisualizar(function () {
-                    realizarProximaAcao();
-                });
                 return [3 /*break*/, 33];
             case 3:
                 _b.trys.push([3, 5, , 6]);
@@ -189,7 +203,7 @@ var processarEscolha = function (opcao) { return __awaiter(void 0, void 0, void 
             case 4:
                 dados = _b.sent();
                 if (dados.length == 0) {
-                    console.log("Nenhum item foi encontrado");
+                    console.log("Nenhum item foi encontrado.");
                 }
                 else {
                     console.log('Estoques encontrados:');
@@ -201,112 +215,126 @@ var processarEscolha = function (opcao) { return __awaiter(void 0, void 0, void 
                         console.log('Quantidade:', dado.quantidade);
                     });
                 }
+                pausaParaVisualizar(function () {
+                    realizarProximaAcao();
+                });
                 return [3 /*break*/, 6];
             case 5:
                 error_1 = _b.sent();
                 console.error(error_1);
-                return [3 /*break*/, 6];
-            case 6:
                 pausaParaVisualizar(function () {
                     realizarProximaAcao();
                 });
-                return [3 /*break*/, 33];
+                return [3 /*break*/, 6];
+            case 6: return [3 /*break*/, 33];
             case 7:
                 _b.trys.push([7, 9, , 10]);
                 return [4 /*yield*/, (0, controleEstoque_1.totalValorInventario)(filePath)];
             case 8:
                 valorTotal = _b.sent();
                 console.log("O valor total do seu invent\u00E1rio \u00E9 R$".concat(valorTotal, "."));
+                pausaParaVisualizar(function () {
+                    realizarProximaAcao();
+                });
                 return [3 /*break*/, 10];
             case 9:
                 error_2 = _b.sent();
                 console.error(error_2);
-                return [3 /*break*/, 10];
-            case 10:
                 pausaParaVisualizar(function () {
                     realizarProximaAcao();
                 });
-                return [3 /*break*/, 33];
+                return [3 /*break*/, 10];
+            case 10: return [3 /*break*/, 33];
             case 11:
                 _b.trys.push([11, 13, , 14]);
                 return [4 /*yield*/, (0, controleEstoque_1.totalPesoInventario)(filePath)];
             case 12:
                 pesoTotal = _b.sent();
                 console.log("O peso total do seu invent\u00E1rio \u00E9 ".concat(pesoTotal, "kg."));
+                pausaParaVisualizar(function () {
+                    realizarProximaAcao();
+                });
                 return [3 /*break*/, 14];
             case 13:
                 error_3 = _b.sent();
                 console.error(error_3);
-                return [3 /*break*/, 14];
-            case 14:
                 pausaParaVisualizar(function () {
                     realizarProximaAcao();
                 });
-                return [3 /*break*/, 33];
+                return [3 /*break*/, 14];
+            case 14: return [3 /*break*/, 33];
             case 15:
                 _b.trys.push([15, 17, , 18]);
                 return [4 /*yield*/, (0, controleEstoque_1.mediaValorInventario)(filePath)];
             case 16:
                 mediaValor = _b.sent();
                 console.log("A m\u00E9dia de valor do seu invent\u00E1rio \u00E9 R$".concat(mediaValor, "."));
+                pausaParaVisualizar(function () {
+                    realizarProximaAcao();
+                });
                 return [3 /*break*/, 18];
             case 17:
                 error_4 = _b.sent();
                 console.error(error_4);
-                return [3 /*break*/, 18];
-            case 18:
                 pausaParaVisualizar(function () {
                     realizarProximaAcao();
                 });
-                return [3 /*break*/, 33];
+                return [3 /*break*/, 18];
+            case 18: return [3 /*break*/, 33];
             case 19:
                 _b.trys.push([19, 21, , 22]);
                 return [4 /*yield*/, (0, controleEstoque_1.mediaPesoInventario)(filePath)];
             case 20:
                 mediaPeso = _b.sent();
                 console.log("A m\u00E9dia de peso do seu invent\u00E1rio \u00E9 ".concat(mediaPeso, "kg."));
+                pausaParaVisualizar(function () {
+                    realizarProximaAcao();
+                });
                 return [3 /*break*/, 22];
             case 21:
                 error_5 = _b.sent();
                 console.error(error_5);
-                return [3 /*break*/, 22];
-            case 22:
                 pausaParaVisualizar(function () {
                     realizarProximaAcao();
                 });
-                return [3 /*break*/, 33];
+                return [3 /*break*/, 22];
+            case 22: return [3 /*break*/, 33];
             case 23:
                 _b.trys.push([23, 25, , 26]);
                 return [4 /*yield*/, (0, controleEstoque_1.quantidadeItensInventario)(filePath)];
             case 24:
                 qTotal = _b.sent();
                 console.log("H\u00E1 no seu invent\u00E1rio ".concat(qTotal, " itens."));
+                pausaParaVisualizar(function () {
+                    realizarProximaAcao();
+                });
                 return [3 /*break*/, 26];
             case 25:
                 error_6 = _b.sent();
                 console.error(error_6);
-                return [3 /*break*/, 26];
-            case 26:
                 pausaParaVisualizar(function () {
                     realizarProximaAcao();
                 });
-                return [3 /*break*/, 33];
+                return [3 /*break*/, 26];
+            case 26: return [3 /*break*/, 33];
             case 27:
                 _b.trys.push([27, 29, , 30]);
                 return [4 /*yield*/, (0, controleEstoque_1.quantidadeProdutosInventario)(filePath)];
             case 28:
                 qTotal = _b.sent();
                 console.log("H\u00E1 no seu invent\u00E1rio ".concat(qTotal, " produtos."));
+                pausaParaVisualizar(function () {
+                    realizarProximaAcao();
+                });
                 return [3 /*break*/, 30];
             case 29:
                 error_7 = _b.sent();
                 console.error(error_7);
-                return [3 /*break*/, 30];
-            case 30:
                 pausaParaVisualizar(function () {
                     realizarProximaAcao();
                 });
-                return [3 /*break*/, 33];
+                return [3 /*break*/, 30];
+            case 30: return [3 /*break*/, 33];
             case 31:
                 console.log('Saindo...');
                 rl.close();

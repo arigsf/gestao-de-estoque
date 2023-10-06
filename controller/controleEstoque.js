@@ -110,7 +110,7 @@ var totalValorInventario = function (filePath) { return __awaiter(void 0, void 0
                 }
                 else {
                     dados.forEach(function (dado, index) {
-                        soma += dado.valor * dado.quantidade;
+                        soma += Number(dado.valor * dado.quantidade);
                     });
                     return [2 /*return*/, soma];
                 }
@@ -138,7 +138,7 @@ var totalPesoInventario = function (filePath) { return __awaiter(void 0, void 0,
                 }
                 else {
                     dados.forEach(function (dado, index) {
-                        soma += dado.peso * dado.quantidade;
+                        soma += Number(dado.peso * dado.quantidade);
                     });
                     return [2 /*return*/, soma];
                 }
@@ -171,8 +171,6 @@ var mediaValorInventario = function (filePath) { return __awaiter(void 0, void 0
                         var quantidade = Number(dado.quantidade);
                         soma += valor * quantidade;
                         q += quantidade;
-                        console.log(soma);
-                        console.log(q);
                     });
                     return [2 /*return*/, soma / q];
                 }
@@ -201,8 +199,10 @@ var mediaPesoInventario = function (filePath) { return __awaiter(void 0, void 0,
                 }
                 else {
                     dados.forEach(function (dado, index) {
-                        soma += dado.peso * dado.quantidade;
-                        q += dado.quantidade;
+                        var peso = Number(dado.peso);
+                        var quantidade = Number(dado.quantidade);
+                        soma += peso * quantidade;
+                        q += quantidade;
                     });
                     return [2 /*return*/, soma / q];
                 }
@@ -230,7 +230,7 @@ var quantidadeItensInventario = function (filePath) { return __awaiter(void 0, v
                 }
                 else {
                     dados.forEach(function (dado, index) {
-                        soma += dado.quantidade;
+                        soma += Number(dado.quantidade);
                     });
                     return [2 /*return*/, soma];
                 }
